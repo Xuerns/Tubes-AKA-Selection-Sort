@@ -42,7 +42,7 @@ function recursiveAlgoritm(arr, startIndex) {
     return () => recursiveAlgoritm(arr, startIndex + 1);
 }
 
-function selectionSortRecursive(arr) {
+export function selectionSortRecursive(arr) {
     let result = [...arr];
     const startSort = enableBigInput(recursiveAlgoritm);
     return startSort(result, 0);
