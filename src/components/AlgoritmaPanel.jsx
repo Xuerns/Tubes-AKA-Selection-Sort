@@ -70,14 +70,14 @@ endfunction`;
                             lalu menukarnya (swap) dengan elemen pertama dari bagian tersebut.
                         </p>
                         <div className="bg-blue-50 text-blue-800 text-xs p-3 rounded border border-blue-200">
-                            <strong>Konsep Utama:</strong> "Cari nilai minimum/maksimum, lalu tukar ke posisi depan."
+                            <strong>Konsep Algoritma:</strong> "Cari nilai minimum/maksimum, lalu tukar ke posisi depan."
                         </div>
                     </div>
 
                     <div className="md:w-1/3">
                         <h3 className="text-sm font-bold text-white mb-3 border-b pb-1">Analisis Kompleksitas (Big-O)</h3>
-                        <div className="grid grid-cols-2 gap-3 text-center">
-                            <div className="col-span-2 h-full bg-gray-50 p-2 rounded border">
+                        <div className="grid grid-cols-2 gap-3 text-center h-[80%]">
+                            <div className="col-span-2 bg-gray-50 p-2 rounded border flex items-center justify-center flex-col">
                                 <p className="text-xs text-gray-500 uppercase font-semibold">Waktu (Time)</p>
                                 <p className="text-xl font-bold text-gray-800">O(n²)</p>
                                 <p className="text-[10px] text-gray-400">Semua Kasus (Best/Avg/Worst)</p>

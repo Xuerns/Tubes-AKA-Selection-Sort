@@ -7,7 +7,7 @@ export default function ControlPanel({ selectedSize, setSelectedSize, handleGene
             <div className="mb-6">
                 <label className="block text-xs font-bold text-white uppercase tracking-wide mb-2">Mode Manual</label>
                 <div className="mb-3">
-                    <label className="block text-sm font-semibold mb-1">Jumlah Data (N):</label>
+                    <label className="text-white block text-sm font-semibold mb-1">Jumlah Data (N):</label>
                     <div className="flex gap-2">
                         <select 
                             className="border p-2 rounded w-full bg-gray-50 focus:ring-2 focus:ring-blue-200 outline-none" 
@@ -38,7 +38,7 @@ export default function ControlPanel({ selectedSize, setSelectedSize, handleGene
                             Iteratif Asc
                         </button>
                         <button 
-                            className="bg-teal-600 hover:bg-teal-700 active:bg-teal-800 disabled:bg-gray-300 text-white py-2 rounded text-xs md:text-sm font-bold shadow-sm" 
+                            className="bg-teal-300 hover:bg-teal-700 active:bg-teal-800 disabled:bg-gray-300 text-white py-2 rounded text-xs md:text-sm font-bold shadow-sm" 
                             onClick={() => handleSort("iterative-desc")} disabled={isSorting}>
                             Iteratif Desc
                         </button>
