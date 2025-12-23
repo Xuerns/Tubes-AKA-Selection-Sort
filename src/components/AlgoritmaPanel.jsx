@@ -95,7 +95,7 @@ endfunction`;
                 >
                     <div className="flex items-center gap-2">
                         <h2 className="text-lg font-bold text-gray-200">Implementasi Pseudocode</h2>
-                        <span className="text-xs bg-teal-900 text-teal-300 px-2 py-0.5 rounded-full border border-teal-700">
+                        <span className="text-[8px] lg:text-xs bg-teal-900 text-teal-300 px-2 py-0.5 rounded-full border border-teal-700">
                             Klik untuk lihat
                         </span>
                     </div>
@@ -112,7 +112,7 @@ endfunction`;
                                      <span className="text-xs text-gray-400 font-mono">Looping</span>
                                 </div>
                                 <pre className="rounded px-4 py-3 w-full border bg-black border-gray-700 text-cyan-500 font-mono text-xs md:text-sm leading-relaxed whitespace-pre-wrap shadow-inner">
-                                    <code className="text-lg">{iterativeCode}</code>
+                                    <code className="lg:text-lg">{iterativeCode}</code>
                                 </pre>
                             </div>
 
@@ -122,7 +122,7 @@ endfunction`;
                                     <span className="text-xs text-gray-400 font-mono">Self-Calling Function</span>
                                 </div>
                                 <pre className="rounded px-4 py-3 w-full border bg-black border-gray-700 text-blue-300 font-mono text-xs md:text-sm leading-relaxed whitespace-pre-wrap shadow-inner">
-                                    <code className="text-lg">{recursiveCode}</code>
+                                    <code className="lg:text-lg">{recursiveCode}</code>
                                 </pre>
                             </div>
 
