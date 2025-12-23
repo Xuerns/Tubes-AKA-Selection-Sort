@@ -25,7 +25,7 @@ export default function Status({ arrayData, initialData, isSorted, lastSortedMet
     }
 
     return (
-        <div className="bg-slate-900 p-5 rounded-lg shadow border border-teal-300">
+        <div className="bg-slate-900 p-5 rounded-lg shadow border border-teal-300 col-span-2">
             <h3 className="font-bold text-white mb-3 border-b border-gray-700 pb-2">Status Eksekusi</h3>
 
             <div className="grid grid-cols-2 gap-4 mb-4 text-sm">

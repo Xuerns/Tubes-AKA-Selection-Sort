@@ -7,6 +7,7 @@ import Status from "./Status";
 import Chart from "./Chart";
 import AlgoritmaPanel from "./AlgoritmaPanel";
 import Hero from "./Hero";
+import ChartBar from "./ChartBar";
 
 export default function Programs() {
     const [selectedSize, setSelectedSize] = useState(100);
@@ -231,7 +232,7 @@ export default function Programs() {
                 <div className="max-w-7xl mx-auto">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                         <div className="lg:col-span-2 space-y-6">
-                            <div className="grid grid-cols-2 gap-5">
+                            <div className="grid grid-cols-3 gap-5">
                                 <ControlPanel
                                 selectedSize={selectedSize}
                                 setSelectedSize={setSelectedSize}
@@ -250,12 +251,18 @@ export default function Programs() {
                             />
                             </div>
                         </div>
-                        <div className="lg:col-span-2">
+                        <div className="lg:col-span-1">
                             <Chart
                                 chartData={chartData}
                                 resetChart={() => setChartData([])}
                             />
                         </div>
+                        <div className="lg:col-span-1">
+                                <ChartBar 
+                                    chartData={chartData} 
+                                    selectedSize={selectedSize} 
+                                />
+                            </div>
                     </div>
 
                     <AlgoritmaPanel className=""/>

@@ -38,7 +38,7 @@ export default function Chart({ chartData, resetChart }) {
                                 labelFormatter={(label) => `Data: ${label} items`}
                                 contentStyle={{ backgroundColor: '#1f2937', borderColor: '#374151', color: '#f3f4f6', borderRadius: '8px' }} 
                             />
-                            <Legend verticalAlign="top" height={36} iconType="circle" wrapperStyle={{ paddingTop: '10px' }}/>
+                            <Legend verticalAlign="top" align="center" height={36} iconType="circle" wrapperStyle={{ paddingTop: '10px' }}/>
                             
                             <Line connectNulls type="monotone" dataKey="iteratifAsc" stroke="#22c55e" name="Iteratif Asc" strokeWidth={3} dot={{r:3}} activeDot={{r: 6}} />
                             <Line connectNulls type="monotone" dataKey="iteratifDesc" stroke="#00f5ff" name="Iteratif Desc" strokeWidth={3} dot={{r:3}} activeDot={{r: 6}} />

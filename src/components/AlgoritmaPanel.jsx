@@ -108,21 +108,21 @@ endfunction`;
                             
                             <div>
                                 <div className="flex justify-between items-center mb-2">
-                                     <label className="block text-sm font-semibold text-center bg-green-900/50 border border-green-700 text-green-300 px-3 py-1 rounded">Iteratif</label>
+                                     <label className="block text-sm font-semibold text-center bg-cyan-900/50 border border-cyan-700 text-cyan-500 px-3 py-1 rounded">Iteratif</label>
                                      <span className="text-xs text-gray-400 font-mono">Looping</span>
                                 </div>
-                                <pre className="rounded px-4 py-3 w-full border bg-black border-gray-700 text-green-400 font-mono text-xs md:text-sm leading-relaxed whitespace-pre-wrap shadow-inner">
-                                    <code>{iterativeCode}</code>
+                                <pre className="rounded px-4 py-3 w-full border bg-black border-gray-700 text-cyan-500 font-mono text-xs md:text-sm leading-relaxed whitespace-pre-wrap shadow-inner">
+                                    <code className="text-lg">{iterativeCode}</code>
                                 </pre>
                             </div>
 
                             <div>
                                 <div className="flex justify-between items-center mb-2">
-                                    <label className="block text-sm font-semibold text-center bg-red-900/50 border border-red-700 text-red-300 px-3 py-1 rounded">Rekursif</label>
+                                    <label className="block text-sm font-semibold text-center bg-blue-900/50 border border-blue-700 text-blue-300 px-3 py-1 rounded">Rekursif</label>
                                     <span className="text-xs text-gray-400 font-mono">Self-Calling Function</span>
                                 </div>
-                                <pre className="rounded px-4 py-3 w-full border bg-black border-gray-700 text-red-300 font-mono text-xs md:text-sm leading-relaxed whitespace-pre-wrap shadow-inner">
-                                    <code>{recursiveCode}</code>
+                                <pre className="rounded px-4 py-3 w-full border bg-black border-gray-700 text-blue-300 font-mono text-xs md:text-sm leading-relaxed whitespace-pre-wrap shadow-inner">
+                                    <code className="text-lg">{recursiveCode}</code>
                                 </pre>
                             </div>
 
