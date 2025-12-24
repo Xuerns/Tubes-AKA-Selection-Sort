@@ -51,7 +51,7 @@ endfunction`;
         A[minIndex] = temp
     endif
 
-    SelectionSort_Recursive(A, n, i + 1)
+    return SelectionSort_Recursive(A, n, i + 1)
 endfunction`;
 
     return (
