@@ -1,13 +1,12 @@
 import { useState, useEffect, useMemo } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
-import { selectionSortIterativeAsc, selectionSortIterativeDesc, selectionSortRecursiveAsc, selectionSortRecursiveDesc, generateRandom } from "/src/SelectionSort";
+import { selectionSortIterativeAsc, selectionSortIterativeDesc, selectionSortRecursiveAsc, selectionSortRecursiveDesc, generateRandom } from "/src/SelectionSort"; 
 import ControlPanel from "./ControlPanel";
 import Status from "./Status";
 import Chart from "./Chart";
 import AlgoritmaPanel from "./AlgoritmaPanel";
 import Hero from "./Hero";
-import ChartBar from "./ChartBar";
 
 export default function Programs() {
     const [selectedSize, setSelectedSize] = useState(100);
@@ -18,7 +17,6 @@ export default function Programs() {
     const [lastSortMethod, setLastSortMethod] = useState("");
     const [chartData, setChartData] = useState([]);
     const [initialData, setInitialData] = useState([])
-
     const [init, setInit] = useState(false);
 
     useEffect(() => {
@@ -29,88 +27,81 @@ export default function Programs() {
         });
     }, []);
 
+    const measureExecution = (sortFn, data) => {
+        const n = data.length;
+        const iterations = n < 1000 ? 50 : 1; 
+
+        let totalTime = 0;
+        let lastResult = [];
+
+        for (let i = 0; i < iterations; i++) {
+            const tempArray = [...data]; 
+            const start = performance.now();
+            sortFn(tempArray); 
+            const end = performance.now();
+            
+            totalTime += (end - start);
+            
+            if (i === iterations - 1) {
+                lastResult = tempArray;
+            }
+        }
+
+        return {
+            time: parseFloat((totalTime / iterations).toFixed(4)), 
+            result: lastResult
+        };
+    };
+
     const particlesOptions = useMemo(() => ({
-        fullScreen: {
-            enable: false,
-            zIndex: 0,
-        },
-        background: {
-            color: {
-                value: "#000000", 
-            },
-        },
+        fullScreen: { enable: false, zIndex: 0 },
+        background: { color: { value: "#000000" } },
         fpsLimit: 120,
         interactivity: {
             events: {
-                onHover: {
-                    enable: true,
-                    mode: "grab", 
-                },
-                onClick: {
-                    enable: true,
-                    mode: "push", 
-                },
+                onHover: { enable: true, mode: "grab" },
+                onClick: { enable: true, mode: "push" },
             },
             modes: {
-                grab: {
-                    distance: 140,
-                    links: {
-                        opacity: 1, 
-                    },
-                },
-                push: {
-                    quantity: 4,
-                },
+                grab: { distance: 140, links: { opacity: 1 } },
+                push: { quantity: 4 },
             },
         },
         particles: {
-            color: {
-                value: "#ffffff", 
-            },
+            color: { value: "#ffffff" },
             links: {
-                color: "#00f3ff", 
-                distance: 200,    
-                enable: true,     
-                opacity: 1,     
-                width: 2,         
+                color: "#00f3ff",
+                distance: 200,
+                enable: true,
+                opacity: 0.5,
+                width: 1,
             },
             move: {
                 direction: "none",
                 enable: true,
-                outModes: {
-                    default: "bounce", 
-                },
+                outModes: { default: "bounce" },
                 random: false,
-                speed: 2, 
+                speed: 1,
                 straight: false,
             },
             number: {
-                density: {
-                    enable: true,
-                    area: 800,
-                },
-                value: 80, 
+                density: { enable: true, area: 800 },
+                value: 80,
             },
-            opacity: {
-                value: 0.5,
-            },
-            shape: {
-                type: "circle", 
-            },
-            size: {
-                value: { min: 1, max: 3 }, 
-            },
+            opacity: { value: 0.5 },
+            shape: { type: "circle" },
+            size: { value: { min: 1, max: 3 } },
         },
         detectRetina: true,
     }), []);
 
-    const sizeOptions = [10, 50, 100, 500, 1000, 2000, 5000, 10000];
+    const sizeOptions = [10, 50, 100, 500, 1000, 2000, 5000, 10000]; 
 
     function handleGenerate(sizeOverride = null) {
         const size = sizeOverride || Number(selectedSize);
         const newData = generateRandom(size);
         setArrayData(newData);
-        setInitialData([...newData])
+        setInitialData([...newData]);
         setIsSorted(false);
         setLastSortTime(0);
         setLastSortMethod("");
@@ -127,34 +118,27 @@ export default function Programs() {
         setIsSorting(true);
 
         setTimeout(() => {
-            const inputArr = [...currentData];
-            let sortedArr = [];
-            let startTime, endTime;
-
-            startTime = performance.now();
+            let metric;
 
             if (methodKey === "iterative-asc") {
-                sortedArr = selectionSortIterativeAsc(inputArr);
+                metric = measureExecution(selectionSortIterativeAsc, currentData);
             } else if (methodKey === "iterative-desc") {
-                sortedArr = selectionSortIterativeDesc(inputArr);
+                metric = measureExecution(selectionSortIterativeDesc, currentData);
             } else if (methodKey === "recursive-asc") {
-                sortedArr = selectionSortRecursiveAsc(inputArr);
+                metric = measureExecution(selectionSortRecursiveAsc, currentData);
             } else if (methodKey === "recursive-desc") {
-                sortedArr = selectionSortRecursiveDesc(inputArr);
+                metric = measureExecution(selectionSortRecursiveDesc, currentData);
             }
 
-            endTime = performance.now();
-            const executionTime = parseFloat((endTime - startTime).toFixed(4));
-
-            setArrayData(sortedArr);
+            setArrayData(metric.result);
             setIsSorted(true);
 
             const niceName = methodKey.replace("-", " ").replace(/\b\w/g, (l) => l.toUpperCase());
             setLastSortMethod(niceName);
-            setLastSortTime(executionTime);
+            setLastSortTime(metric.time);
             setIsSorting(false);
 
-            updateChartData(currentData.length, methodKey, executionTime);
+            updateChartData(currentData.length, methodKey, metric.time);
         }, 100);
     }
 
@@ -164,32 +148,27 @@ export default function Programs() {
 
         setTimeout(() => {
             const results = [];
+            
             sizeOptions.forEach((n) => {
                 const randomData = generateRandom(n);
 
-                let t1 = performance.now(); selectionSortIterativeAsc([...randomData]); let t2 = performance.now();
-                let timeIterAsc = parseFloat((t2 - t1).toFixed(4));
-
-                t1 = performance.now(); selectionSortIterativeDesc([...randomData]); t2 = performance.now();
-                let timeIterDesc = parseFloat((t2 - t1).toFixed(4));
-
-                t1 = performance.now(); selectionSortRecursiveAsc([...randomData]); t2 = performance.now();
-                let timeRecAsc = parseFloat((t2 - t1).toFixed(4));
-
-                t1 = performance.now(); selectionSortRecursiveDesc([...randomData]); t2 = performance.now();
-                let timeRecDesc = parseFloat((t2 - t1).toFixed(4));
+                const tIterAsc = measureExecution(selectionSortIterativeAsc, randomData).time;
+                const tIterDesc = measureExecution(selectionSortIterativeDesc, randomData).time;
+                const tRecAsc = measureExecution(selectionSortRecursiveAsc, randomData).time;
+                const tRecDesc = measureExecution(selectionSortRecursiveDesc, randomData).time;
 
                 results.push({
                     n: n,
-                    iteratifAsc: timeIterAsc,
-                    iteratifDesc: timeIterDesc,
-                    rekursifAsc: timeRecAsc,
-                    rekursifDesc: timeRecDesc,
+                    iteratifAsc: tIterAsc,
+                    iteratifDesc: tIterDesc,
+                    rekursifAsc: tRecAsc,
+                    rekursifDesc: tRecDesc,
                 });
             });
 
             setChartData(results);
             setIsSorting(false);
+            
             handleGenerate(sizeOptions[sizeOptions.length - 1]);
         }, 500);
     }
@@ -224,48 +203,42 @@ export default function Programs() {
                 <Particles
                     id="tsparticles"
                     options={particlesOptions}
-                className="absolute inset-0 z-0"></Particles>
+                    className="absolute inset-0 z-0"></Particles>
             )}
 
-            <div className="relative z-10"> 
+            <div className="relative z-10">
                 <Hero />
                 <div className="max-w-7xl mx-auto">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                         <div className="lg:col-span-2 space-y-6">
                             <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
                                 <ControlPanel
-                                selectedSize={selectedSize}
-                                setSelectedSize={setSelectedSize}
-                                handleGenerate={handleGenerate}
-                                handleSort={handleSort}
-                                runAutoBenchMark={runAutoBenchmark}
-                                isSorting={isSorting}
-                                sizeOptions={sizeOptions}
-                            />
-                            <Status
-                                arrayData={arrayData}
-                                initialData={initialData}
-                                isSorted={isSorted}
-                                lastSortedMethod={lastSortMethod}
-                                lastSortTime={lastSortTime}
-                            />
+                                    selectedSize={selectedSize}
+                                    setSelectedSize={setSelectedSize}
+                                    handleGenerate={handleGenerate}
+                                    handleSort={handleSort}
+                                    runAutoBenchMark={runAutoBenchmark}
+                                    isSorting={isSorting}
+                                    sizeOptions={sizeOptions}
+                                />
+                                <Status
+                                    arrayData={arrayData}
+                                    initialData={initialData}
+                                    isSorted={isSorted}
+                                    lastSortedMethod={lastSortMethod}
+                                    lastSortTime={lastSortTime}
+                                />
                             </div>
                         </div>
-                        <div className="lg:col-span-1">
+                        <div className="lg:col-span-2">
                             <Chart
                                 chartData={chartData}
                                 resetChart={() => setChartData([])}
                             />
                         </div>
-                        <div className="lg:col-span-1">
-                                <ChartBar 
-                                    chartData={chartData} 
-                                    selectedSize={selectedSize} 
-                                />
-                            </div>
                     </div>
 
-                    <AlgoritmaPanel className=""/>
+                    <AlgoritmaPanel className="" />
                 </div>
             </div>
         </div>

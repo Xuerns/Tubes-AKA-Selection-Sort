@@ -29,6 +29,7 @@ export default function Chart({ chartData, resetChart }) {
                                 tick={{ fill: '#ffffff' }}
                             />
                             <YAxis 
+                                width={80}
                                 label={{ value: "Waktu (ms)", angle: -90, position: "insideLeft", fill: '#ffffff'}} 
                                 tick={{ fill: '#ffffff' }}
                             />
@@ -38,7 +39,7 @@ export default function Chart({ chartData, resetChart }) {
                                 labelFormatter={(label) => `Data: ${label} items`}
                                 contentStyle={{ backgroundColor: '#1f2937', borderColor: '#374151', color: '#f3f4f6', borderRadius: '8px' }} 
                             />
-                            <Legend verticalAlign="top" align="right" height={36} iconType="circle" wrapperStyle={{ paddingTop: '10px', fontSize:"8px", fontWeight:"bold" }}/>
+                            <Legend verticalAlign="top" align="center" height={36} iconType="circle" wrapperStyle={{ paddingTop: '10px', fontSize:"12px", fontWeight:"bold" }}/>
                             
                             <Line connectNulls type="monotone" dataKey="iteratifAsc" stroke="#22c55e" name="Iteratif Asc" strokeWidth={3} dot={{r:3}} activeDot={{r: 6}} />
                             <Line connectNulls type="monotone" dataKey="iteratifDesc" stroke="#00f5ff" name="Iteratif Desc" strokeWidth={3} dot={{r:3}} activeDot={{r: 6}} />
