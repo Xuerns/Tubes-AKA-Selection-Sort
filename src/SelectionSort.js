@@ -21,11 +21,15 @@ function SelectionSortIteratifAsc(Arr, n) {
         minIndex = i;
         j = i + 1;
         while (j < n) {
-            if (Arr[j] < Arr[minIndex]) minIndex = j;
+            if (Arr[j] < Arr[minIndex]) {
+                minIndex = j;
+            }
             j++;
         }
         if (minIndex != i) {
-            temp = Arr[i]; Arr[i] = Arr[minIndex]; Arr[minIndex] = temp;
+            temp = Arr[i]; 
+            Arr[i] = Arr[minIndex]; 
+            Arr[minIndex] = temp;
         }
         i++;
     }
@@ -38,11 +42,15 @@ function SelectionSortIteratifDesc(Arr, n) {
         minIndex = i;
         j = i + 1;
         while (j < n) {
-            if (Arr[j] > Arr[minIndex]) minIndex = j;
+            if (Arr[j] > Arr[minIndex]) {
+                minIndex = j;
+            }
             j++;
         }
         if (minIndex != i) {
-            temp = Arr[i]; Arr[i] = Arr[minIndex]; Arr[minIndex] = temp;
+            temp = Arr[i]; 
+            Arr[i] = Arr[minIndex]; 
+            Arr[minIndex] = temp;
         }
         i++;
     }

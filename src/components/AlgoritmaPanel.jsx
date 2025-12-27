@@ -26,7 +26,7 @@ Algoritma:
         j <- i + 1
         
         while j < n do
-            if Arr[j] > Arr[minIndex] then
+            if Arr[j] < Arr[minIndex] then
                 minIndex <- j
             endif
             j <- j + 1
